@@ -1,30 +1,45 @@
-let x = 0;
-let y = 0;
-let xhole = 400;
-let yhole = 100;
+let s;
+let scl = 20;
+let food;
 
 function setup() {
-	createCanvas(800, 600);
+	createCanvas(600, 600);
+	s = new Snake();
+	frameRate(10);
+	pickLocation();
+}
+
+function pickLocation() {
+	let cols = floor(width / scl);
+	let rows = floor(height / scl);
+	food = createVector(floor(random(cols)), floor(random(rows)));
+	food.mult(scl);
+}
+
+function mousePressed() {
+	s.total++;
 }
 
 function draw() {
-	background(200, 250, 40);
-	circle(xhole, yhole, 40);
-	circle(x, y, 10);
-	// check if ball is in the hole stop
+	background(51);
+	if (s.eat(food)) {
+		pickLocation();
+	}
+	s.death();
+	s.update();
+	s.show();
+	fill(255, 0, 100);
+	rect(food.x, food.y, scl, scl);
 }
 
 function keyPressed() {
-	if ( key == 'j' ) {
-		y += 20
-	}
-	if ( key == 'k' ) {
-		y -= 20
-	}
-	if ( key == 'h' ) {
-		x -= 20
-	}
-	if ( key == 'l' ) {
-		x += 20
+	if (keyCode === UP_ARROW) {
+		s.dir(0, -1);
+	} else if (keyCode === DOWN_ARROW) {
+		s.dir(0, 1);
+	} else if (keyCode === RIGHT_ARROW) {
+		s.dir(1, 0);
+	} else if (keyCode === LEFT_ARROW) {
+		s.dir(-1, 0);
 	}
 }
