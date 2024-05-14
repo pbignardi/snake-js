@@ -6,6 +6,12 @@ class Snake {
 	#yspeed;
 	#total;
 	#tail;
+	#directions = {
+		'LEFT': [-1, 0],
+		'RIGHT': [1, 0],
+		'DOWN': [0, 1],
+		'UP': [0, -1]
+	};
 
 	constructor() {
 		this.#x = 0;
@@ -23,6 +29,7 @@ class Snake {
 	get yspeed() { return this.#yspeed }
 	get total() { return this.#total }
 	get tail() { return this.#tail }
+	get directions() { return this.#directions }
 
 	// setters
 	set xspeed(xspeed) { if(abs(xspeed) <= 1) { this.#xspeed = xspeed; } }
@@ -77,6 +84,12 @@ class Snake {
 			rect(this.tail[i].x, this.tail[i].y, scl, scl);
 		}
 		rect(this.x, this.y, scl, scl);
+	}
+
+	changeDirection(dir) {
+		let x, y;
+		[x, y] = this.directions[dir]
+		this.dir(x, y)
 	}
 
 }
