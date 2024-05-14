@@ -88,8 +88,11 @@ class Snake {
 
 	changeDirection(dir) {
 		let x, y;
-		[x, y] = this.directions[dir]
-		this.dir(x, y)
+		[x, y] = this.directions[dir];
+		// allow only 90degs turns
+		if (this.xspeed * x >= 0 && this.yspeed * y >= 0) {
+			this.dir(x, y);
+		}
 	}
 
 }
