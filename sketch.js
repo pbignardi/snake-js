@@ -1,12 +1,12 @@
 let s;
 let scl = 20;
-let food;
+let f;
 
 function setup() {
 	createCanvas(600, 600);
 	s = new Snake();
+	f = new Food();
 	frameRate(10);
-	pickLocation();
 }
 
 function pickLocation() {
@@ -22,14 +22,14 @@ function mousePressed() {
 
 function draw() {
 	background(51);
-	if (s.eat(food)) {
-		pickLocation();
+	if (s.eat(f.pos)) {
+		f = new Food();
 	}
 	s.death();
 	s.update();
 	s.show();
 	fill(255, 0, 100);
-	rect(food.x, food.y, scl, scl);
+	rect(f.x, f.y, scl, scl);
 }
 
 function keyPressed() {
