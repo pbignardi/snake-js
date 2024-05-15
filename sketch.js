@@ -28,11 +28,7 @@ function draw() {
 	// create chessboard
 	for (i = 0; i < pixelX / scl; i++) {
 		for (j = 0; j < pixelY / scl; j++) {
-			if ((i + j) % 2 == 0) {
-				fill(colorChessboard1);
-			} else {
-				fill(colorChessboard2);
-			}
+			(i + j) % 2 == 0 ? fill(colorChessboard1) : fill(colorChessboard2);
 			rect(i * scl, j * scl, scl, scl);
 		}
 	}
