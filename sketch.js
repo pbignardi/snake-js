@@ -7,10 +7,11 @@ let food;
 let pixelX = parseInt(localStorage.getItem("width"));
 let pixelY = parseInt(localStorage.getItem("height"));
 let scl = parseInt(localStorage.getItem("scale"));
+let topology = localStorage.getItem("topology");
 console.log(`The number of pixels in x direction is: ${pixelX}`);
 console.log(`The number of pixels in y direction is: ${pixelY}`);
 console.log(`The scale value is: ${scl}`);
-//let topology = localStorage.getItem("topology");
+console.log(`The topology is: ${topology}`);
 let colorChessboard1 = 30;
 let colorChessboard2 = 60;
 
