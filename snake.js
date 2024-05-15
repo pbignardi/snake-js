@@ -7,10 +7,10 @@ class Snake {
 	#total;
 	#tail;
 	#directions = {
-		'LEFT': [-1, 0],
-		'RIGHT': [1, 0],
-		'DOWN': [0, 1],
-		'UP': [0, -1]
+		LEFT: [-1, 0],
+		RIGHT: [1, 0],
+		DOWN: [0, 1],
+		UP: [0, -1],
 	};
 
 	constructor() {
@@ -23,23 +23,49 @@ class Snake {
 	}
 
 	// getters
-	get x() { return this.#x }
-	get y() { return this.#y }
-	get xspeed() { return this.#xspeed }
-	get yspeed() { return this.#yspeed }
-	get total() { return this.#total }
-	get tail() { return this.#tail }
-	get directions() { return this.#directions }
+	get x() {
+		return this.#x;
+	}
+	get y() {
+		return this.#y;
+	}
+	get xspeed() {
+		return this.#xspeed;
+	}
+	get yspeed() {
+		return this.#yspeed;
+	}
+	get total() {
+		return this.#total;
+	}
+	get tail() {
+		return this.#tail;
+	}
+	get directions() {
+		return this.#directions;
+	}
 
 	// setters
-	set xspeed(xspeed) { if(abs(xspeed) <= 1) { this.#xspeed = xspeed; } }
-	set yspeed(yspeed) { if(abs(yspeed) <= 1) { this.#yspeed = yspeed; } }
+	set xspeed(xspeed) {
+		if (abs(xspeed) <= 1) {
+			this.#xspeed = xspeed;
+		}
+	}
+	set yspeed(yspeed) {
+		if (abs(yspeed) <= 1) {
+			this.#yspeed = yspeed;
+		}
+	}
 
 	// methods
 	eat(pos) {
 		let d = dist(this.x, this.y, pos.x, pos.y);
-		if (d < 1) { this.#total++; return true; }
-		else { return false; }
+		if (d < 1) {
+			this.#total++;
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	dir(x, y) {
@@ -65,6 +91,7 @@ class Snake {
 		this.#yspeed = 0;
 		this.#total = 0;
 		this.#tail = [];
+		window.location.href = "setup.html";
 	}
 
 	update() {
@@ -88,8 +115,7 @@ class Snake {
 
 	changeDirection(dir) {
 		let x, y;
-		[x, y] = this.directions[dir]
-		this.dir(x, y)
+		[x, y] = this.directions[dir];
+		this.dir(x, y);
 	}
-
 }

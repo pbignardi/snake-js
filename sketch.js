@@ -1,8 +1,16 @@
 let s;
-let scl = 20;
 let food;
-let pixelX = 600;
-let pixelY = 600;
+
+//let pixelX = 600;
+//let pixelY = 600;
+//let scl = 20;
+let pixelX = parseInt(localStorage.getItem("width"));
+let pixelY = parseInt(localStorage.getItem("height"));
+let scl = parseInt(localStorage.getItem("scale"));
+console.log(`The number of pixels in x direction is: ${pixelX}`);
+console.log(`The number of pixels in y direction is: ${pixelY}`);
+console.log(`The scale value is: ${scl}`);
+//let topology = localStorage.getItem("topology");
 let colorChessboard1 = 30;
 let colorChessboard2 = 60;
 
@@ -16,6 +24,7 @@ function setup() {
 function pickLocation() {
 	let cols = floor(width / scl);
 	let rows = floor(height / scl);
+	console.log(cols, rows);
 	food = createVector(floor(random(cols)), floor(random(rows)));
 	food.mult(scl);
 }
