@@ -2,25 +2,31 @@
 <html lang="en">
 	<head>
 		<title>Setup Snake Game</title>
+		<style>
+			h1 {
+				text-align: center;
+			}
+		</style>
 	</head>
 	<body>
+		<h1>Snake game on different topology</h1>
 		<form id="setupForm">
 			<!-- Values to setup the grid -->
 			<label>Width:</label>
 			<input type="number" id="width" value="600" required />
 			<label>Height:</label>
 			<input type="number" id="height" value="600" required />
-			<label>scale:</label>
+			<label>Scale:</label>
 			<input type="number" id="scale" value="20" required />
 
 			<!-- Values to setup the topology -->
 			<p>Select a topology:</p>
-			<input type="radio" id="topology" value="flat" required />
-			<label for="flat">Flat</label><br />
+			<input type="radio" id="topology" value="square" required />
+			<label>Square</label><br />
 			<input type="radio" id="topology" value="toroidal" />
-			<label for="toroidal">Toroidal</label><br />
-			<input type="radio" id="topology" value="spherical" />
-			<label for="spherical">Spherical</label><br />
+			<label>Toroidal</label><br />
+			<input type="radio" id="topology" value="cylinder" />
+			<label>Cylinder</label><br />
 
 			<button type="submit">Start Game</button>
 		</form>
