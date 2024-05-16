@@ -10,10 +10,10 @@ document
 			'input[name="topology"]:checked'
 		).value;
 
-		localStorage.setItem("width", width);
-		localStorage.setItem("height", height);
-		localStorage.setItem("scale", scale);
-		localStorage.setItem("topology", topology);
+		sessionStorage.setItem("width", width);
+		sessionStorage.setItem("height", height);
+		sessionStorage.setItem("scale", scale);
+		sessionStorage.setItem("topology", topology);
 
 		window.location.href = "snake.html";
 	});

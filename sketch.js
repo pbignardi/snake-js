@@ -1,9 +1,9 @@
 let s;
 let food;
-let width = parseInt(localStorage.getItem("width"));
-let height = parseInt(localStorage.getItem("height"));
-let scl = parseInt(localStorage.getItem("scale"));
-let topology = localStorage.getItem("topology");
+let width = parseInt(sessionStorage.getItem("width"));
+let height = parseInt(sessionStorage.getItem("height"));
+let scl = parseInt(sessionStorage.getItem("scale"));
+let topology = sessionStorage.getItem("topology");
 let colorChessboard1 = 30;
 let colorChessboard2 = 60;
 
