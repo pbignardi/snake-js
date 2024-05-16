@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Setup Snake Game</title>
+		<style>
+			h1 {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Snake game on different topology</h1>
+		<form id="setupForm">
+			<!-- Values to setup the grid -->
+			<label>Width:</label>
+			<input type="number" id="width" value="600" required />
+			<label>Height:</label>
+			<input type="number" id="height" value="600" required />
+			<label>Scale:</label>
+			<input type="number" id="scale" value="20" required />
+
+			<!-- Values to setup the topology -->
+			<p>Select a topology:</p>
+			<input type="radio" name="topology" value="square" required />
+			<label>Square</label><br />
+			<input type="radio" name="topology" value="cylinder" />
+			<label>Cylinder</label><br />
+			<input type="radio" name="topology" value="mobius" />
+			<label>Mobius</label><br />
+			<input type="radio" name="topology" value="torus" />
+			<label>Toroidal</label><br />
+			<input type="radio" name="topology" value="klein" />
+			<label>Klein</label><br />
+
+			<button type="submit">Start Game</button>
+		</form>
+
+		<script async src="setup.js"></script>
+	</body>
+</html>
