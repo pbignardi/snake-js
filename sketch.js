@@ -1,13 +1,14 @@
 let s;
-let scl = 20;
 let food;
-let pixelX = 600;
-let pixelY = 600;
+let width = parseInt(sessionStorage.getItem("width"));
+let height = parseInt(sessionStorage.getItem("height"));
+let scl = parseInt(sessionStorage.getItem("scale"));
+let topology = sessionStorage.getItem("topology");
 let colorChessboard1 = 30;
 let colorChessboard2 = 60;
 
 function setup() {
-	createCanvas(pixelX, pixelY);
+	createCanvas(width, height);
 	s = new Snake();
 	frameRate(10);
 	pickLocation();
@@ -26,12 +27,17 @@ function mousePressed() {
 
 function draw() {
 	// create chessboard
-	for (i = 0; i < pixelX / scl; i++) {
-		for (j = 0; j < pixelY / scl; j++) {
-			(i + j) % 2 == 0 ? fill(colorChessboard1) : fill(colorChessboard2);
+	for (i = 0; i < width / scl; i++) {
+		for (j = 0; j < height / scl; j++) {
+			if ((i + j) % 2 == 0) {
+				fill(colorChessboard1);
+			} else {
+				fill(colorChessboard2);
+			}
 			rect(i * scl, j * scl, scl, scl);
 		}
 	}
+
 	if (s.eat(food)) {
 		pickLocation();
 	}
