@@ -29,7 +29,11 @@ function draw() {
 	// create chessboard
 	for (i = 0; i < width / scl; i++) {
 		for (j = 0; j < height / scl; j++) {
-			(i + j) % 2 == 0 ? fill(colorChessboard1) : fill(colorChessboard2);
+			if ((i + j) % 2 == 0) {
+				fill(colorChessboard1);
+			} else {
+				fill(colorChessboard2);
+			}
 			rect(i * scl, j * scl, scl, scl);
 		}
 	}
