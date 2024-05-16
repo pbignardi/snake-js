@@ -6,7 +6,9 @@ document
 		const width = document.getElementById("width").value;
 		const height = document.getElementById("height").value;
 		const scale = document.getElementById("scale").value;
-		const topology = document.getElementById("topology").value;
+		let topology = document.querySelector(
+			'input[name="topology"]:checked'
+		).value;
 
 		localStorage.setItem("width", width);
 		localStorage.setItem("height", height);
