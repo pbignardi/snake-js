@@ -1,3 +1,4 @@
+// Sphere geometry
 let width = 600;
 let height = 600;
 let scale = 20;
@@ -15,7 +16,7 @@ function draw() {
 	orbitControl();
 
 	increse_phi = PI / 36;
-	increse_theta = PI / 18;
+	increse_theta = PI / 36;
 	for (let phi = 0; phi < 2 * PI; phi += increse_phi) {
 		for (let theta = 0; theta < PI; theta += increse_theta) {
 			beginShape(TESS);
