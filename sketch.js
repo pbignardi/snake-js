@@ -10,7 +10,7 @@ let colorChessboard2 = 60;
 function setup() {
 	createCanvas(width, height);
 	s = new Snake();
-	frameRate(5);
+	frameRate(10);
 	pickLocation();
 }
 
