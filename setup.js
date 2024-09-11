@@ -1,3 +1,5 @@
+"use strict";
+
 document
 	.getElementById("setupForm")
 	.addEventListener("submit", function (event) {
@@ -15,5 +17,5 @@ document
 		sessionStorage.setItem("scale", scale);
 		sessionStorage.setItem("topology", topology);
 
-		window.location.href = "snake.html";
+		window.location.href = "snake.html"; // Redirect to snake.html
 	});
