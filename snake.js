@@ -171,7 +171,7 @@ class Snake {
 	}
 
 	show() {
-		this.sketch.fill(255);
+		this.sketch.fill(195, 232, 141);
 		for (let i = 0; i < this.tail.length; i++) {
 			this.sketch.rect(this.tail[i].x, this.tail[i].y, this.scl, this.scl);
 		}

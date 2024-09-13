@@ -8,13 +8,13 @@ import { setup_square, draw_square } from "../surfaces/square.js";
 
 export const surfaceSketch = (sketch) => {
 	let topology = sessionStorage.getItem("topology");
-	let width_surface = 800;
-	let height_surface = 800;
 	let width = parseInt(sessionStorage.getItem("width"));
 	let height = parseInt(sessionStorage.getItem("height"));
 	let scale = parseInt(sessionStorage.getItem("scale"));
 	let cols = Math.floor(width / scale);
 	let rows = Math.floor(height / scale);
+	let colorChessboard1 = parseInt(sessionStorage.getItem("colorChessboard1"));
+	let colorChessboard2 = parseInt(sessionStorage.getItem("colorChessboard2"));
 
 	// Define setup functions for different topologies
 
@@ -30,7 +30,7 @@ export const surfaceSketch = (sketch) => {
 	sketch.setup = () => {
 		sketch.frameRate(120);
 		if (setupFunctions[topology]) {
-			setupFunctions[topology](sketch, width_surface, height_surface);
+			setupFunctions[topology](sketch, width, height);
 		} else {
 			console.error(`Unknown topology: ${topology}`);
 		}
@@ -51,7 +51,15 @@ export const surfaceSketch = (sketch) => {
 		let foodPosition = JSON.parse(sessionStorage.getItem("foodPosition")); // array of two elements
 		// Call the appropriate draw function based on the topology
 		if (drawFunctions[topology]) {
-			drawFunctions[topology](sketch, cols, rows, snakePosition, foodPosition);
+			drawFunctions[topology](
+				sketch,
+				cols,
+				rows,
+				snakePosition,
+				foodPosition,
+				colorChessboard1,
+				colorChessboard2
+			);
 		} else {
 			console.error(`Unknown topology: ${topology}`);
 		}

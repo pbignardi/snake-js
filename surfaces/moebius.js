@@ -1,11 +1,9 @@
 "use strict";
 import { containsSubArray, equalArray } from "../utils.js";
 
-let colorChessboard1 = 30;
-let colorChessboard2 = 60;
-
 let scale_moebius = 100;
-let y_shift = -1.5;
+let y_shift = -0.5;
+let x_shift = -0.3;
 
 export function setup_moebius(sketch, width_surface, height_surface, scale) {
 	sketch.createCanvas(width_surface, height_surface, sketch.WEBGL);
@@ -13,11 +11,19 @@ export function setup_moebius(sketch, width_surface, height_surface, scale) {
 
 	// Set up the camera
 	// camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ)
-	sketch.camera(0, 400, -400, 0, 0, 0, 0, 1, 0);
+	sketch.camera(0, 550, -550, 0, 0, 0, 0, 1, 0);
 }
 
-export function draw_moebius(sketch, cols, rows, snakePosition, foodPosition) {
-	sketch.background(255);
+export function draw_moebius(
+	sketch,
+	cols,
+	rows,
+	snakePosition,
+	foodPosition,
+	colorChessboard1,
+	colorChessboard2
+) {
+	sketch.background(41, 41, 41);
 	sketch.orbitControl();
 
 	// Moebius strip see --> https://mathweb.ucsd.edu/~jeggers/math31ch/moebius_strip.pdf
@@ -32,9 +38,9 @@ export function draw_moebius(sketch, cols, rows, snakePosition, foodPosition) {
 			sketch.beginShape(sketch.TESS);
 			// Color of the face
 			if (containsSubArray(snakePosition, [theta_num, t_num])) {
-				sketch.fill(255);
+				sketch.fill(195, 232, 141);
 			} else if (equalArray(foodPosition, [theta_num, t_num])) {
-				sketch.fill(255, 0, 0);
+				sketch.fill(240, 113, 120);
 			} else if ((theta_num + t_num) % 2 == 0) {
 				sketch.fill(colorChessboard1);
 			} else {
@@ -45,10 +51,11 @@ export function draw_moebius(sketch, cols, rows, snakePosition, foodPosition) {
 			for (let i = 0; i < 2; i++) {
 				for (let j = 0; j < 2; j++) {
 					let pX =
+						x_shift +
 						sketch.cos(theta + i * theta_step) *
-						(2 +
-							(t + ((i + j) % 2) * t_step) *
-								sketch.cos((theta + i * theta_step) / 2));
+							(2 +
+								(t + ((i + j) % 2) * t_step) *
+									sketch.cos((theta + i * theta_step) / 2));
 					let pY =
 						y_shift +
 						sketch.sin(theta + i * theta_step) *

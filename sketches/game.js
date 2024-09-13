@@ -6,8 +6,8 @@ export const gameSketch = (sketch) => {
 	let width = parseInt(sessionStorage.getItem("width"));
 	let height = parseInt(sessionStorage.getItem("height"));
 	let scl = parseInt(sessionStorage.getItem("scale"));
-	let colorChessboard1 = 30;
-	let colorChessboard2 = 60;
+	let colorChessboard1 = parseInt(sessionStorage.getItem("colorChessboard1"));
+	let colorChessboard2 = parseInt(sessionStorage.getItem("colorChessboard2"));
 	let cols = Math.floor(width / scl);
 	let rows = Math.floor(height / scl);
 
@@ -58,7 +58,7 @@ export const gameSketch = (sketch) => {
 		s.death();
 		s.update();
 		s.show();
-		sketch.fill(255, 0, 0);
+		sketch.fill(240, 113, 120);
 		sketch.rect(food.x, food.y, scl, scl);
 
 		// push position of snake to session storage

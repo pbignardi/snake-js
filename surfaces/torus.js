@@ -1,24 +1,29 @@
 "use strict";
 import { containsSubArray, equalArray } from "../utils.js";
 
-let colorChessboard1 = 30;
-let colorChessboard2 = 60;
-
 let radius_tube = 60;
 let radius_hole = 200;
-let y_shift = -150;
+let y_shift = -100;
 
-export function setup_torus(sketch, width_surface, height_surface, scale) {
+export function setup_torus(sketch, width_surface, height_surface) {
 	sketch.createCanvas(width_surface, height_surface, sketch.WEBGL);
 	sketch.angleMode(sketch.RADIANS);
 
 	// Set up the camera
 	// camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ)
-	sketch.camera(0, 400, -300, 0, 0, 0, 0, 1, 0);
+	sketch.camera(0, 550, -450, 0, 0, 0, 0, 1, 0);
 }
 
-export function draw_torus(sketch, cols, rows, snakePosition, foodPosition) {
-	sketch.background(255);
+export function draw_torus(
+	sketch,
+	cols,
+	rows,
+	snakePosition,
+	foodPosition,
+	colorChessboard1,
+	colorChessboard2
+) {
+	sketch.background(41, 41, 41);
 	sketch.orbitControl();
 
 	let increse_theta = (2 * sketch.PI) / cols;
@@ -32,9 +37,9 @@ export function draw_torus(sketch, cols, rows, snakePosition, foodPosition) {
 			sketch.beginShape(sketch.TESS);
 			// Color of the face
 			if (containsSubArray(snakePosition, [theta_num, phi_num])) {
-				sketch.fill(255);
+				sketch.fill(195, 232, 141);
 			} else if (equalArray(foodPosition, [theta_num, phi_num])) {
-				sketch.fill(255, 0, 0);
+				sketch.fill(240, 113, 120);
 			} else if ((theta_num + phi_num) % 2 == 0) {
 				sketch.fill(colorChessboard1);
 			} else {

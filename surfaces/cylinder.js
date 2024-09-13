@@ -1,10 +1,7 @@
 "use strict";
 import { containsSubArray, equalArray } from "../utils.js";
 
-let colorChessboard1 = 30;
-let colorChessboard2 = 60;
-
-let y_shift = -200;
+let y_shift = -100;
 let height_cylinder = 200;
 let radius_cylinder = 150;
 
@@ -14,11 +11,19 @@ export function setup_cylinder(sketch, width_surface, height_surface, scale) {
 
 	// Set up the camera
 	// camera(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ)
-	sketch.camera(0, 250, -280, 0, 0, 0, 0, 1, 0);
+	sketch.camera(0, 300, -280, 0, 0, 0, 0, 1, 0);
 }
 
-export function draw_cylinder(sketch, cols, rows, snakePosition, foodPosition) {
-	sketch.background(255);
+export function draw_cylinder(
+	sketch,
+	cols,
+	rows,
+	snakePosition,
+	foodPosition,
+	colorChessboard1,
+	colorChessboard2
+) {
+	sketch.background(41, 41, 41);
 	sketch.orbitControl();
 
 	let increse_theta = (2 * sketch.PI) / cols;
@@ -32,9 +37,9 @@ export function draw_cylinder(sketch, cols, rows, snakePosition, foodPosition) {
 			sketch.beginShape(sketch.TESS);
 			// Color of the face
 			if (containsSubArray(snakePosition, [theta_num, h_num])) {
-				sketch.fill(255);
+				sketch.fill(195, 232, 141);
 			} else if (equalArray(foodPosition, [theta_num, h_num])) {
-				sketch.fill(255, 0, 0);
+				sketch.fill(240, 113, 120);
 			} else if ((theta_num + h_num) % 2 == 0) {
 				sketch.fill(colorChessboard1);
 			} else {

@@ -1,40 +1,159 @@
 <!DOCTYPE html>
+
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Snake-UniPV</title>
-		<style>
-			h1 {
-				text-align: center;
-			}
-			#container {
-				width: 100%;
-				margin: auto;
-			}
-			#game {
-				float: left;
-				width: 45%;
-				height: 100%;
-				padding: 10px;
-			}
-			#surface {
-				padding: 10px;
-				float: left;
-				width: 45%;
-				height: 100%;
-			}
-		</style>
+		<title>Chess Snake Dual Game</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+			rel="stylesheet" />
+		<link rel="stylesheet" href="snake.css" />
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.js"></script>
 	</head>
-	<body>
-		<h1>Snake game on different topology</h1>
-		<div id="container">
-			<div id="game"></div>
-			<div id="surface"></div>
+	<body style="background-color: #212121">
+		<div class="container-fluid py-5">
+			<h1 id="game-title" class="text-white text-center mb-5">
+				<script>
+					document.addEventListener("DOMContentLoaded", function () {
+						const topology = sessionStorage.getItem("topology");
+						const titleElement = document.getElementById("game-title");
+						if (topology) {
+							titleElement.textContent = `Snake game on ${topology}`;
+						} else {
+							titleElement.textContent = "Snake game on unknown topology";
+						}
+					});
+				</script>
+			</h1>
+			<div class="row justify-content-center">
+				<!-- Square -->
+				<div class="col-lg-5 mb-4">
+					<div class="card shadow">
+						<div
+							class="card-header text-white"
+							style="
+								background-color: #1a1a1a;
+								border-bottom: 1px solid #727272;
+							">
+							<h5 class="mb-0">Square with sides identified</h5>
+						</div>
+						<div class="card-body">
+							<div id="game"></div>
+						</div>
+						<div class="card-footer" style="border-top: 1px solid #727272">
+							<div
+								class="d-flex justify-content-between align-items-center text-white">
+								<span
+									>Score:
+									<span id="score1">
+										<script>
+											document.addEventListener(
+												"DOMContentLoaded",
+												function () {
+													setInterval(function () {
+														const snakePosition = JSON.parse(
+															sessionStorage.getItem("snakePosition")
+														);
+														const snakeLength = snakePosition.length;
+														document.getElementById("score1").textContent =
+															snakeLength;
+													}, 50); // have to update at least every 1000/framerate ms
+												}
+											);
+										</script>
+									</span></span
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 3D topology -->
+				<div class="col-lg-5 mb-4">
+					<div class="card shadow">
+						<div
+							class="card-header text-white"
+							style="
+								background-color: #1a1a1a;
+								border-bottom: 1px solid #727272;
+							">
+							<h5 class="mb-0">3D surface</h5>
+						</div>
+						<div class="card-body">
+							<div id="surface"></div>
+						</div>
+						<div class="card-footer" style="border-top: 1px solid #727272">
+							<div
+								class="d-flex justify-content-between align-items-center text-white">
+								<span
+									>Score:
+									<span id="score2">
+										<script>
+											document.addEventListener(
+												"DOMContentLoaded",
+												function () {
+													setInterval(function () {
+														const snakePosition = JSON.parse(
+															sessionStorage.getItem("snakePosition")
+														);
+														const snakeLength = snakePosition.length;
+														document.getElementById("score2").textContent =
+															snakeLength;
+													}, 50); // have to update at least every 1000/framerate ms
+												}
+											);
+										</script>
+									</span></span
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Fancy game settings -->
+			<!-- <div class="row justify-content-center mt-4">
+				<div class="col-lg-10">
+					<div class="card shadow">
+						<div class="card-body">
+							<h5 class="card-title">Game Settings</h5>
+							<div class="row g-3">
+								<div class="col-md-6">
+									<label for="theme" class="form-label">Board Theme</label>
+									<select class="form-select" id="theme">
+										<option value="classic">Classic</option>
+										<option value="modern">Modern</option>
+										<option value="neon">Neon</option>
+									</select>
+								</div>
+								<div class="col-md-6">
+									<label for="difficulty" class="form-label">Difficulty</label>
+									<select class="form-select" id="difficulty">
+										<option value="easy">Easy</option>
+										<option value="medium">Medium</option>
+										<option value="hard">Hard</option>
+									</select>
+								</div>
+								<div class="col-12">
+									<div class="form-check form-switch">
+										<input
+											class="form-check-input"
+											type="checkbox"
+											id="soundEffects" />
+										<label class="form-check-label" for="soundEffects"
+											>Enable Sound Effects</label
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
 		</div>
 		<script type="module" src="init.js"></script>
 		<script src="snake.js"></script>
 		<script src="keys.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>

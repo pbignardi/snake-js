@@ -1,8 +1,6 @@
 "use strict";
 import { containsSubArray, equalArray } from "../utils.js";
 
-let colorChessboard1 = 30;
-let colorChessboard2 = 60;
 let scale_klein = 110; // 110 for wikipedia and 20 for the other
 
 export function setup_klein(sketch, width_surface, height_surface, scale) {
@@ -14,8 +12,16 @@ export function setup_klein(sketch, width_surface, height_surface, scale) {
 	sketch.camera(0, -600, 600);
 }
 
-export function draw_klein(sketch, rows, cols, snakePosition, foodPosition) {
-	sketch.background(255);
+export function draw_klein(
+	sketch,
+	rows,
+	cols,
+	snakePosition,
+	foodPosition,
+	colorChessboard1,
+	colorChessboard2
+) {
+	sketch.background(41, 41, 41);
 	sketch.orbitControl();
 
 	let u_step = sketch.PI / rows; // for wikipedia
@@ -30,9 +36,9 @@ export function draw_klein(sketch, rows, cols, snakePosition, foodPosition) {
 			sketch.beginShape(sketch.TESS);
 			// Color of the face
 			if (containsSubArray(snakePosition, [u_num, v_num])) {
-				sketch.fill(255);
+				sketch.fill(195, 232, 141);
 			} else if (equalArray(foodPosition, [u_num, v_num])) {
-				sketch.fill(255, 0, 0);
+				sketch.fill(240, 113, 120);
 			} else if ((u_num + v_num) % 2 == 0) {
 				sketch.fill(colorChessboard1);
 			} else {

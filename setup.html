@@ -1,41 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Setup Snake Game</title>
-		<style>
-			h1 {
-				text-align: center;
-			}
-		</style>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Snake game UniPV</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+			rel="stylesheet" />
+		<link rel="stylesheet" href="setup.css" />
 	</head>
-	<body>
-		<h1>Snake game on different topology</h1>
-		<form id="setupForm">
-			<!-- Values to setup the grid -->
-			<label>Width:</label>
-			<input type="number" id="width" value="600" required />
-			<label>Height:</label>
-			<input type="number" id="height" value="600" required />
-			<label>Scale:</label>
-			<input type="number" id="scale" value="20" required />
+	<body class="text-light" style="background-color: #212121">
+		<!-- Title bar -->
+		<nav
+			class="navbar navbar-expand-lg navbar-dark navbar-shadow"
+			style="background-color: #292929">
+			<div class="container d-flex justify-content-center align-items-center">
+				<p class="custom-navbar-text mb-0">SNAKE GAME ON DIFFERENT TOPOLOGY</p>
+			</div>
+		</nav>
 
-			<!-- Values to setup the topology -->
-			<p>Select a topology:</p>
-			<input type="radio" name="topology" value="square" required />
-			<label>Square</label><br />
-			<input type="radio" name="topology" value="cylinder" />
-			<label>Cylinder</label><br />
-			<input type="radio" name="topology" value="moebius" />
-			<label>Moebius</label><br />
-			<input type="radio" name="topology" value="torus" />
-			<label>Toroidal</label><br />
-			<input type="radio" name="topology" value="klein" />
-			<label>Klein</label><br />
+		<!-- Main content -->
+		<main class="container my-5" style="background-color: #212121">
+			<form id="setupForm">
+				<div class="row">
+					<div class="col-lg-5" style="margin-right: 20px">
+						<h2
+							class="mb-4"
+							style="
+								text-decoration-line: underline;
+								text-underline-offset: 6px;
+							">
+							Customize Your Snake Game
+						</h2>
+						<!-- Width selection -->
+						<div class="mb-3">
+							<label for="width" class="form-label">Width:</label>
+							<input
+								type="number"
+								id="width"
+								class="form-control"
+								min="1"
+								max="1000"
+								value="600"
+								required />
+						</div>
+						<!-- Height selection -->
+						<div class="mb-3">
+							<label for="height" class="form-label">Height:</label>
+							<input
+								type="number"
+								id="height"
+								class="form-control"
+								min="1"
+								max="1000"
+								value="600"
+								required />
+						</div>
+						<!-- Scale selection -->
+						<div class="mb-3">
+							<label for="scale" class="form-label">Scale:</label>
+							<input
+								type="number"
+								id="scale"
+								class="form-control"
+								min="1"
+								max="1000"
+								value="20"
+								required />
+						</div>
+						<!-- Topology selection -->
+						<p class="form-label mt-5">Select topology:</p>
+						<!-- square -->
+						<div class="mb-3">
+							<label
+								class="form-check custom-radio d-flex align-items-center px-3"
+								style="cursor: pointer">
+								<input
+									class="form-check-input"
+									id="square"
+									type="radio"
+									name="topology"
+									value="square"
+									required />
+								<span class="ms-2">Square</span>
+							</label>
+						</div>
+						<!-- cylinder -->
+						<div class="mb-3">
+							<label
+								class="form-check custom-radio d-flex align-items-center px-3"
+								style="cursor: pointer">
+								<input
+									class="form-check-input"
+									id="cylinder"
+									type="radio"
+									name="topology"
+									value="cylinder"
+									required />
+								<span class="ms-2">Cylinder</span>
+							</label>
+						</div>
+						<!-- moebius -->
+						<div class="mb-3">
+							<label
+								class="form-check custom-radio d-flex align-items-center px-3"
+								style="cursor: pointer">
+								<input
+									class="form-check-input"
+									id="moebius"
+									type="radio"
+									name="topology"
+									value="moebius"
+									required />
+								<span class="ms-2">Moebius strip</span>
+							</label>
+						</div>
+						<!-- torus -->
+						<div class="mb-3">
+							<label
+								class="form-check custom-radio d-flex align-items-center px-3"
+								style="cursor: pointer">
+								<input
+									class="form-check-input"
+									id="torus"
+									type="radio"
+									name="topology"
+									value="torus"
+									required />
+								<span class="ms-2">Torus</span>
+							</label>
+						</div>
+						<!-- klein -->
+						<div class="mb-3">
+							<label
+								class="form-check custom-radio d-flex align-items-center px-3"
+								style="cursor: pointer">
+								<input
+									class="form-check-input"
+									id="klein"
+									type="radio"
+									name="topology"
+									value="klein"
+									required />
+								<span class="ms-2">Klein bottle</span>
+							</label>
+						</div>
+					</div>
 
-			<!-- Values to setup the snake -->
-			<button type="submit">Start Game</button>
-		</form>
+					<!-- Game Preview -->
+					<div class="col-lg-6 mt-4 mt-lg-0">
+						<div class="game-preview p-4 rounded">
+							<h2 class="mb-3">Game Preview</h2>
+							<div
+								id="preview-area"
+								class="bg-light rounded"
+								style="height: 400px">
+								<img
+									src="./SoloLeveling.png"
+									alt="Game Preview Image"
+									style="width: 100%; height: 100%; object-fit: cover" />
+							</div>
+						</div>
+						<!-- Button to start the game -->
+						<div class="container text-center">
+							<button type="submit" class="btn btn-primary">Start Game</button>
+						</div>
 
-		<script async src="setup.js"></script>
+						<script async src="setup.js"></script>
+					</div>
+				</div>
+			</form>
+		</main>
+
+		<!-- Footer bar -->
+		<footer
+			class="text-light py-2 fixed-bottom footer-shadow"
+			style="background-color: #292929">
+			<div class="container text-center">
+				<p class="mb-0 custom-footer-text">
+					&copy; 2024 Dipartimento di Matematica, Felice Casorati
+				</p>
+			</div>
+		</footer>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>

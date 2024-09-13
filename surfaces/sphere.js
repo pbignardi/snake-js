@@ -1,7 +1,5 @@
+// ! Sphere is no longer maintained.
 "use strict";
-
-let colorChessboard1 = 30;
-let colorChessboard2 = 60;
 
 export function setup_sphere(sketch, width_surface, height_surface, scale) {
 	sketch.createCanvas(width_surface, height_surface, sketch.WEBGL);
@@ -12,8 +10,16 @@ export function setup_sphere(sketch, width_surface, height_surface, scale) {
 	sketch.camera(0, 550, 600, 0, 0, 0, 0, 1, 0);
 }
 
-export function draw_sphere(sketch) {
-	sketch.background(255);
+export function draw_sphere(
+	sketch,
+	rows,
+	cols,
+	snakePosition,
+	foodPosition,
+	colorChessboard1,
+	colorChessboard2
+) {
+	sketch.background(41, 41, 41);
 	sketch.orbitControl();
 
 	let increse_phi = sketch.PI / 36;
