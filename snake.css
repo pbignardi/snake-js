@@ -14,3 +14,16 @@ body {
 /* .card:hover {
 	transform: translateY(-5px);
 } */
+
+/* Footer customization */
+.footer-shadow {
+	box-shadow: 0px -4px 6px rgb(0, 0, 0);
+}
+.custom-footer-text {
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	white-space: nowrap; /* Prevent text from wrapping */
+	overflow: hidden; /* Hide overflow if the text is too long */
+	text-overflow: ellipsis; /* Add ellipsis (...) if text is cut off */
+}

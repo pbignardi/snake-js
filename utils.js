@@ -2,7 +2,8 @@
 
 // check if an element is in an array
 export function containsSubArray(array, element) {
-	for (let i = 0; i < array.length; i++) {
+	let arrayLenght = array ? array.length : 0;
+	for (let i = 0; i < arrayLenght; i++) {
 		if (array[i][0] === element[0] && array[i][1] === element[1]) {
 			return true;
 		}

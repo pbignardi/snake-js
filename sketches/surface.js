@@ -50,6 +50,7 @@ export const surfaceSketch = (sketch) => {
 		let snakePosition = JSON.parse(sessionStorage.getItem("snakePosition")); // array of array
 		let foodPosition = JSON.parse(sessionStorage.getItem("foodPosition")); // array of two elements
 		// Call the appropriate draw function based on the topology
+		sketch.strokeWidth(1);
 		if (drawFunctions[topology]) {
 			drawFunctions[topology](
 				sketch,
