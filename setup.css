@@ -1,0 +1,93 @@
+/* Body customization */
+body {
+	font-family: "JetBrainsMono Nerd Font";
+}
+
+/* Navbar customization */
+.custom-navbar-text {
+	color: #fff;
+	font-size: 24px;
+	font-weight: bold;
+	white-space: nowrap; /* Prevent text from wrapping */
+	overflow: hidden; /* Hide overflow if the text is too long */
+	text-overflow: ellipsis; /* Add ellipsis (...) if text is cut off */
+}
+.navbar-shadow {
+	box-shadow: 0px 4px 6px rgb(0, 0, 0);
+}
+
+/* Footer customization */
+.footer-shadow {
+	box-shadow: 0px -4px 6px rgb(0, 0, 0);
+}
+.custom-footer-text {
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	white-space: nowrap; /* Prevent text from wrapping */
+	overflow: hidden; /* Hide overflow if the text is too long */
+	text-overflow: ellipsis; /* Add ellipsis (...) if text is cut off */
+}
+
+/* Form for Width, height, scale customization */
+form .form-control,
+form .form-select {
+	background-color: #292929;
+	color: #fff;
+	border-color: #727272;
+}
+form .form-control:focus,
+form .form-select:focus {
+	background-color: #323232;
+	color: #fff;
+	border-color: #727272;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+form label {
+	font-weight: bold;
+}
+
+/* Customization for the topology form */
+.custom-radio {
+	background-color: #292929;
+	padding: 15px;
+	border: 1px solid #727272;
+	border-radius: 10px;
+	transition: all 0.3s ease;
+}
+.custom-radio:hover {
+	background-color: #323232;
+}
+.form-check-input:checked ~ .form-check-label {
+	color: #007bff;
+	font-weight: bold;
+}
+
+/* Customization for the game preview */
+.game-preview {
+	background-color: #292929;
+	transition: all 0.3s ease;
+}
+.game-preview:hover {
+	transform: scale(1.02);
+	box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+#preview-area {
+	transition: all 0.3s ease;
+}
+@media (max-width: 991px) {
+	.game-preview {
+		margin-top: 2rem;
+	}
+}
+
+/* Button customization */
+.btn-primary {
+	transition: all 0.3s ease;
+	margin-top: 30px;
+	font-weight: bold;
+}
+.btn-primary:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
