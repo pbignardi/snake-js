@@ -1,14 +1,12 @@
 "use strict";
 
 document.addEventListener("reset", function () {
-	console.log("Resetting sessionStorage");
 	sessionStorage.clear();
 });
 
 document
 	.getElementById("setupForm")
 	.addEventListener("submit", function (event) {
-		console.log("Submitting setup form");
 		event.preventDefault();
 
 		// Get the values from the form
