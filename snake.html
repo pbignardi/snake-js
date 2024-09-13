@@ -28,7 +28,7 @@
 			</h1>
 			<div class="row justify-content-center">
 				<!-- Square -->
-				<div class="col-lg-5 mb-4">
+				<div id="leftComponent" class="col-lg-5 mb-4">
 					<div class="card shadow">
 						<div
 							class="card-header text-white"
@@ -44,26 +44,38 @@
 						<div class="card-footer" style="border-top: 1px solid #727272">
 							<div
 								class="d-flex justify-content-between align-items-center text-white">
-								<span
-									>Score:
-									<span id="score1">
-										<script>
-											document.addEventListener(
-												"DOMContentLoaded",
-												function () {
-													setInterval(function () {
-														const snakePosition = JSON.parse(
-															sessionStorage.getItem("snakePosition")
-														);
-														const snakeLength = snakePosition.length;
-														document.getElementById("score1").textContent =
-															snakeLength;
-													}, 50); // have to update at least every 1000/framerate ms
-												}
-											);
-										</script>
-									</span></span
-								>
+								<span id="score1">
+									<script>
+										document.addEventListener("DOMContentLoaded", function () {
+											setInterval(function () {
+												const snakePosition = JSON.parse(
+													sessionStorage.getItem("snakePosition")
+												);
+												const snakeLength = snakePosition
+													? snakePosition.length
+													: 1;
+												document.getElementById("score1").textContent =
+													"Score: " + snakeLength;
+											}, 50); // have to update at least every 1000/framerate ms
+										});
+									</script>
+								</span>
+								<span id="highestScore1">
+									<script>
+										document.addEventListener("DOMContentLoaded", function () {
+											setInterval(function () {
+												const snakePosition = JSON.parse(
+													sessionStorage.getItem("snakePosition")
+												);
+												const snakeLength = snakePosition
+													? snakePosition.length
+													: 1;
+												document.getElementById("highestScore1").textContent =
+													"Highest score : ";
+											}, 50); // have to update at least every 1000/framerate ms
+										});
+									</script>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -85,26 +97,38 @@
 						<div class="card-footer" style="border-top: 1px solid #727272">
 							<div
 								class="d-flex justify-content-between align-items-center text-white">
-								<span
-									>Score:
-									<span id="score2">
-										<script>
-											document.addEventListener(
-												"DOMContentLoaded",
-												function () {
-													setInterval(function () {
-														const snakePosition = JSON.parse(
-															sessionStorage.getItem("snakePosition")
-														);
-														const snakeLength = snakePosition.length;
-														document.getElementById("score2").textContent =
-															snakeLength;
-													}, 50); // have to update at least every 1000/framerate ms
-												}
-											);
-										</script>
-									</span></span
-								>
+								<span id="score2">
+									<script>
+										document.addEventListener("DOMContentLoaded", function () {
+											setInterval(function () {
+												const snakePosition = JSON.parse(
+													sessionStorage.getItem("snakePosition")
+												);
+												const snakeLength = snakePosition
+													? snakePosition.length
+													: 1;
+												document.getElementById("score2").textContent =
+													"Score: " + snakeLength;
+											}, 50); // have to update at least every 1000/framerate ms
+										});
+									</script>
+								</span>
+								<span id="highestScore2">
+									<script>
+										document.addEventListener("DOMContentLoaded", function () {
+											setInterval(function () {
+												const snakePosition = JSON.parse(
+													sessionStorage.getItem("snakePosition")
+												);
+												const snakeLength = snakePosition
+													? snakePosition.length
+													: 1;
+												document.getElementById("highestScore2").textContent =
+													"Highest score : ";
+											}, 50); // have to update at least every 1000/framerate ms
+										});
+									</script>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -151,6 +175,20 @@
 				</div>
 			</div> -->
 		</div>
+		<!-- Function to toggle components -->
+		<script>
+			document.addEventListener("keydown", function (event) {
+				if (event.code === "KeyQ") {
+					const leftComponent = document.getElementById("leftComponent");
+					if (leftComponent.style.display === "none") {
+						leftComponent.style.display = "block";
+					} else {
+						leftComponent.style.display = "none";
+					}
+				}
+			});
+		</script>
+
 		<script type="module" src="init.js"></script>
 		<script src="snake.js"></script>
 		<script src="keys.js"></script>

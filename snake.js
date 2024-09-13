@@ -116,6 +116,7 @@ class Snake {
 		this.#yspeed = 0;
 		this.#total = 0;
 		this.#tail = [];
+		sessionStorage.clear();
 		window.location.href = "setup.html";
 	}
 
