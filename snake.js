@@ -12,6 +12,7 @@ class Snake {
 	#scl;
 	#height;
 	#width;
+	#is_dead;
 	#directions = {
 		LEFT: [-1, 0],
 		RIGHT: [1, 0],
@@ -27,6 +28,7 @@ class Snake {
 		this.#yspeed = 0;
 		this.#total = 0;
 		this.#tail = [];
+		this.#is_dead = false;
 		this.#topology = sessionStorage.getItem("topology"); // Initialize the private field '#topology'
 		this.#scl = parseInt(sessionStorage.getItem("scale"));
 		this.#height = parseInt(sessionStorage.getItem("height"));
@@ -60,6 +62,9 @@ class Snake {
 	}
 	get topology() {
 		return this.#topology;
+	}
+	get is_dead() {
+		return this.#is_dead;
 	}
 	get scl() {
 		return this.#scl;
@@ -98,12 +103,19 @@ class Snake {
 		this.yspeed = y;
 	}
 
+	sleep(ms) {
+		return new Promise((resolve) => setTimeout(resolve, ms));
+	}
+
 	death() {
 		for (let i = 0; i < this.tail.length; i++) {
 			let pos = this.tail[i];
 			let d = this.sketch.dist(this.x, this.y, pos.x, pos.y);
 			if (d < 1) {
 				console.log("starting over");
+				this.#is_dead = true;
+				this.sketch.noLoop(); // stop the game
+				this.showDeathModal(); // Show death modal
 				this.reset();
 			}
 		}
@@ -116,13 +128,31 @@ class Snake {
 		this.#yspeed = 0;
 		this.#total = 0;
 		this.#tail = [];
-		sessionStorage.clear();
-		window.location.href = "setup.html";
+		// sessionStorage.clear(); // ! attention
+		// window.location.href = "setup.html"; // ! attention
+	}
+
+	isDeath() {
+		return this.#is_dead;
 	}
 
 	update() {
-		this.#tail.unshift(this.sketch.createVector(this.x, this.y));
-		this.#tail = this.tail.slice(0, this.total);
+		this.#tail.unshift(this.sketch.createVector(this.x, this.y)); // Add the current position to the beginning of the tail array
+		this.#tail = this.tail.slice(0, this.total); // Keep the tail length equal to the total
+
+		if (!this.is_dead) {
+			let topology = this.topology;
+			let snakeLength = this.total + 1; // Calculate the snake length
+			sessionStorage.setItem("currentScore", snakeLength);
+
+			// Calculate the highest score
+			let highestScore =
+				parseInt(localStorage.getItem("highestScore_" + topology)) || 1;
+			if (snakeLength > highestScore) {
+				highestScore = snakeLength;
+				localStorage.setItem("highestScore_" + topology, highestScore); // Update highest score in localStorage
+			}
+		}
 
 		this.#x = this.x + this.xspeed * this.scl;
 		this.#y = this.y + this.yspeed * this.scl;
@@ -186,5 +216,16 @@ class Snake {
 		if (this.xspeed * x >= 0 && this.yspeed * y >= 0) {
 			this.dir(x, y);
 		}
+	}
+
+	// Call this function when the snake dies
+	showDeathModal() {
+		// Update modal with final and highest scores
+		document.getElementById("finalScore").textContent = 5;
+		document.getElementById("highestScore").textContent = 7;
+
+		// Show the modal (using Bootstrap's modal functionality)
+		let deathModal = new bootstrap.Modal(document.getElementById("deathModal"));
+		deathModal.show();
 	}
 }

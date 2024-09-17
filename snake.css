@@ -10,10 +10,6 @@ body {
 	border: 1px solid #727272;
 	border-radius: 6px;
 }
-/* animation for card */
-/* .card:hover {
-	transform: translateY(-5px);
-} */
 
 /* Footer customization */
 .footer-shadow {
@@ -26,4 +22,20 @@ body {
 	white-space: nowrap; /* Prevent text from wrapping */
 	overflow: hidden; /* Hide overflow if the text is too long */
 	text-overflow: ellipsis; /* Add ellipsis (...) if text is cut off */
+}
+
+/* Modal customization */
+.modal-content {
+	background-color: #323232;
+	border-radius: 15px;
+}
+
+.modal-title {
+	color: #ff5370;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+.modal-body p {
+	font-size: 20px;
 }
