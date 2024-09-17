@@ -29,6 +29,8 @@ export function draw_moebius(
 	// Moebius strip see --> https://mathweb.ucsd.edu/~jeggers/math31ch/moebius_strip.pdf
 	let theta_step = (2 * sketch.PI) / cols;
 	let t_step = 2 / rows;
+    let head_color = sketch.color(195, 232, 141) // to change ?
+    let last_color = sketch.color(49, 128, 25) // to change ?
 
 	for (let theta_num = 0; theta_num < cols; theta_num += 1) {
 		for (let t_num = 0; t_num < rows; t_num += 1) {
@@ -37,8 +39,11 @@ export function draw_moebius(
 
 			sketch.beginShape(sketch.TESS);
 			// Color of the face
-			if (containsSubArray(snakePosition, [theta_num, t_num]) || false) {
-				sketch.fill(195, 232, 141);
+            let index = snakePosition.findIndex((e) => (e[0] == theta_num && e[1] == t_num));
+            if (index > -1) {
+                let inter = sketch.map(index, 0, snakePosition.length, 0, 1);
+                let color = sketch.lerpColor(head_color, last_color, inter);
+                sketch.fill(color);
 			} else if (equalArray(foodPosition, [theta_num, t_num]) || false) {
 				sketch.fill(240, 113, 120);
 			} else if ((theta_num + t_num) % 2 == 0) {

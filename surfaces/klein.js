@@ -21,6 +21,8 @@ export function draw_klein(
 	colorChessboard1,
 	colorChessboard2
 ) {
+    let head_color = sketch.color(195, 232, 141) // to change ?
+    let last_color = sketch.color(49, 128, 25) // to change ?
 	sketch.background(41, 41, 41);
 	sketch.orbitControl();
 
@@ -35,8 +37,11 @@ export function draw_klein(
 
 			sketch.beginShape(sketch.TESS);
 			// Color of the face
-			if (containsSubArray(snakePosition, [u_num, v_num]) || false) {
-				sketch.fill(195, 232, 141);
+            let index = snakePosition.findIndex((e) => (e[0] == u_num && e[1] == v_num));
+            if (index > -1) {
+                let inter = sketch.map(index, 0, snakePosition.length, 0, 1);
+                let color = sketch.lerpColor(head_color, last_color, inter);
+                sketch.fill(color);
 			} else if (equalArray(foodPosition, [u_num, v_num]) || false) {
 				sketch.fill(240, 113, 120);
 			} else if ((u_num + v_num) % 2 == 0) {
