@@ -17,7 +17,7 @@ export const gameSketch = (sketch) => {
 	sketch.setup = () => {
 		sketch.createCanvas(width, height);
 		s = new Snake(sketch);
-		sketch.frameRate(10);
+		sketch.frameRate(10); // initial frame rate
 		pickLocation();
 	};
 
@@ -68,24 +68,22 @@ export const gameSketch = (sketch) => {
 		if (s.eat(food)) {
 			pickLocation();
 		}
-		if (!s.isDeath()) {
-			s.death();
-			s.update();
-			s.show();
-			drawIdentification();
+		s.death();
+		s.update();
+		s.show();
+		drawIdentification();
 
-			// Draw food
-			sketch.fill(240, 113, 120);
-			sketch.rect(food.x, food.y, scl, scl);
+		// Draw food
+		sketch.fill(240, 113, 120);
+		sketch.rect(food.x, food.y, scl, scl);
 
-			// push position of snake to session storage
-			sessionStorage.setItem("snakePosition", JSON.stringify(snakePosition()));
-			// push food position to session storage
-			sessionStorage.setItem(
-				"foodPosition",
-				JSON.stringify([food.x / scl, food.y / scl])
-			);
-		}
+		// push position of snake to session storage
+		sessionStorage.setItem("snakePosition", JSON.stringify(snakePosition()));
+		// push food position to session storage
+		sessionStorage.setItem(
+			"foodPosition",
+			JSON.stringify([food.x / scl, food.y / scl])
+		);
 	};
 
 	// keyPressed function

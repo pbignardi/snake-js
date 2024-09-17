@@ -128,23 +128,18 @@ class Snake {
 		this.#yspeed = 0;
 		this.#total = 0;
 		this.#tail = [];
-		// sessionStorage.clear(); // ! attention
-		// window.location.href = "setup.html"; // ! attention
-	}
-
-	isDeath() {
-		return this.#is_dead;
 	}
 
 	update() {
+		// Update the tail of the snake
 		this.#tail.unshift(this.sketch.createVector(this.x, this.y)); // Add the current position to the beginning of the tail array
 		this.#tail = this.tail.slice(0, this.total); // Keep the tail length equal to the total
 
+		// Update the scores
 		if (!this.is_dead) {
 			let topology = this.topology;
 			let snakeLength = this.total + 1; // Calculate the snake length
 			sessionStorage.setItem("currentScore", snakeLength);
-
 			// Calculate the highest score
 			let highestScore =
 				parseInt(localStorage.getItem("highestScore_" + topology)) || 1;
@@ -154,8 +149,14 @@ class Snake {
 			}
 		}
 
+		// update the head of the snake
 		this.#x = this.x + this.xspeed * this.scl;
 		this.#y = this.y + this.yspeed * this.scl;
+
+		// update framerate (update speed of 1 every 5 points with initial speed of 10) and for a maximum of 30
+		if ((this.total + 1) % 5 === 0) {
+			this.sketch.frameRate(Math.max(10 + Math.floor(this.total / 5)));
+		}
 
 		switch (this.topology) {
 			case "square":
@@ -202,15 +203,15 @@ class Snake {
 	}
 
 	show() {
-        let head_color = this.sketch.color(195, 232, 141) // to change ?
-        let last_color = this.sketch.color(49, 128, 25) // to change ?
+		let head_color = this.sketch.color(195, 232, 141); // to change ?
+		let last_color = this.sketch.color(49, 128, 25); // to change ?
 		for (let i = 0; i < this.tail.length; i++) {
-            let inter = this.sketch.map(i+1, 0, this.tail.length, 0, 1);
-            let color = this.sketch.lerpColor(head_color, last_color, inter);
-            this.sketch.fill(color);
+			let inter = this.sketch.map(i + 1, 0, this.tail.length, 0, 1);
+			let color = this.sketch.lerpColor(head_color, last_color, inter);
+			this.sketch.fill(color);
 			this.sketch.rect(this.tail[i].x, this.tail[i].y, this.scl, this.scl);
 		}
-        this.sketch.fill(head_color);
+		this.sketch.fill(head_color);
 		this.sketch.rect(this.x, this.y, this.scl, this.scl);
 	}
 
