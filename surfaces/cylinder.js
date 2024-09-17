@@ -36,9 +36,9 @@ export function draw_cylinder(
 
 			sketch.beginShape(sketch.TESS);
 			// Color of the face
-			if (containsSubArray(snakePosition, [theta_num, h_num])) {
+			if (containsSubArray(snakePosition, [theta_num, h_num]) || false) {
 				sketch.fill(195, 232, 141);
-			} else if (equalArray(foodPosition, [theta_num, h_num])) {
+			} else if (equalArray(foodPosition, [theta_num, h_num]) || false) {
 				sketch.fill(240, 113, 120);
 			} else if ((theta_num + h_num) % 2 == 0) {
 				sketch.fill(colorChessboard1);

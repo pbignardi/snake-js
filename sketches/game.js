@@ -56,14 +56,34 @@ export const gameSketch = (sketch) => {
 		if (s.eat(food)) {
 			pickLocation();
 		}
-		s.death();
-		s.update();
-		s.show();
+		if (!s.isDeath()) {
+			s.death();
+			s.update();
+			s.show();
+			drawIdentification();
 
-		// Draw food
-		sketch.fill(240, 113, 120);
-		sketch.rect(food.x, food.y, scl, scl);
+			// Draw food
+			sketch.fill(240, 113, 120);
+			sketch.rect(food.x, food.y, scl, scl);
 
+			// push position of snake to session storage
+			sessionStorage.setItem("snakePosition", JSON.stringify(snakePosition()));
+			// push food position to session storage
+			sessionStorage.setItem(
+				"foodPosition",
+				JSON.stringify([food.x / scl, food.y / scl])
+			);
+		}
+	};
+
+	// keyPressed function
+	sketch.keyPressed = () => {
+		if (sketch.keyCode in dirs) {
+			s.changeDirection(dirs[sketch.keyCode]);
+		}
+	};
+
+	let drawIdentification = () => {
 		// Add gradient for identification
 		sketch.strokeWeight(10);
 		let startColor_1 = sketch.color(255, 203, 107);
@@ -179,20 +199,5 @@ export const gameSketch = (sketch) => {
 		// reset stroke weight and stroke color
 		sketch.strokeWeight(1);
 		sketch.stroke("black");
-
-		// push position of snake to session storage
-		sessionStorage.setItem("snakePosition", JSON.stringify(snakePosition()));
-		// push food position to session storage
-		sessionStorage.setItem(
-			"foodPosition",
-			JSON.stringify([food.x / scl, food.y / scl])
-		);
-	};
-
-	// keyPressed function
-	sketch.keyPressed = () => {
-		if (sketch.keyCode in dirs) {
-			s.changeDirection(dirs[sketch.keyCode]);
-		}
 	};
 };

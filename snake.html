@@ -12,25 +12,13 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.js"></script>
 	</head>
 	<body style="background-color: #212121">
-		<div class="container-fluid py-5">
-			<h1 id="game-title" class="text-white text-center mb-5">
-				<script>
-					document.addEventListener("DOMContentLoaded", function () {
-						const topology = sessionStorage.getItem("topology");
-						const titleElement = document.getElementById("game-title");
-						if (topology) {
-							titleElement.textContent = `Snake game on ${topology}`;
-						} else {
-							titleElement.textContent = "Snake game on unknown topology";
-						}
-					});
-				</script>
-			</h1>
-			<div class="row justify-content-center">
+		<div class="container-fluid pb-3">
+			<!-- <h2 id="game-title" class="text-white text-center"/> -->
+			<div class="row justify-content-center mb-5 pt-n1">
 				<!-- Square -->
 				<div
 					id="leftComponent"
-					class="col-lg-5 mb-4"
+					class="col-lg-5 my-5"
 					style="width: 660px; height: 660px">
 					<div class="card shadow">
 						<div
@@ -39,7 +27,7 @@
 								background-color: #1a1a1a;
 								border-bottom: 1px solid #727272;
 							">
-							<h5 class="mb-0">Square with sides identified</h5>
+							<h5 class="mb-0">Snake game on the identified square topology</h5>
 						</div>
 						<div class="card-body">
 							<div id="game"></div>
@@ -54,7 +42,7 @@
 					</div>
 				</div>
 				<!-- 3D topology -->
-				<div class="col-lg-5 mb-4" style="height: 660px; width: 660px">
+				<div class="col-lg-5 my-5" style="height: 660px; width: 660px">
 					<div class="card shadow">
 						<div
 							class="card-header text-white"
@@ -62,7 +50,7 @@
 								background-color: #1a1a1a;
 								border-bottom: 1px solid #727272;
 							">
-							<h5 class="mb-0">3D surface</h5>
+							<h5 id="title-surface" class="mb-0" />
 						</div>
 						<div class="card-body">
 							<div id="surface"></div>
@@ -78,56 +66,6 @@
 				</div>
 			</div>
 
-			<!-- Script to display the score and highest score on both components -->
-			<script>
-				document.addEventListener("DOMContentLoaded", function () {
-					setInterval(function () {
-						// Calculate the current score
-						const snakePosition = JSON.parse(
-							sessionStorage.getItem("snakePosition")
-						);
-						const snakeLength = snakePosition ? snakePosition.length : 1;
-
-						// Display the current score on both components
-						document.getElementById("score1").textContent =
-							"Score: " + snakeLength;
-						document.getElementById("score2").textContent =
-							"Score: " + snakeLength;
-
-						// Extract the topology
-						let topology = sessionStorage.getItem("topology");
-
-						// Calculate the highest score
-						let highestScore =
-							parseInt(localStorage.getItem("highestScore_" + topology)) || 1;
-						if (snakeLength > highestScore) {
-							highestScore = snakeLength;
-							localStorage.setItem("highestScore_" + topology, highestScore); // Update highest score in localStorage
-						}
-
-						// Display the highest score on both components
-						document.getElementById("highestScore1").textContent =
-							"Highest score on " + topology + " is : " + highestScore;
-						document.getElementById("highestScore2").textContent =
-							"Highest score on " + topology + " is : " + highestScore;
-					}, 50); // have to update at least every 1000/framerate ms
-				});
-			</script>
-
-			<!-- Function to toggle components -->
-			<script>
-				document.addEventListener("keydown", function (event) {
-					if (event.code === "KeyQ") {
-						const leftComponent = document.getElementById("leftComponent");
-						if (leftComponent.style.display === "none") {
-							leftComponent.style.display = "block";
-						} else {
-							leftComponent.style.display = "none";
-						}
-					}
-				});
-			</script>
-
 			<!-- Footer bar -->
 			<footer
 				class="text-light py-2 fixed-bottom footer-shadow"
@@ -138,47 +76,104 @@
 					</p>
 				</div>
 			</footer>
+		</div>
 
-			<!-- Fancy game settings -->
-			<!-- <div class="row justify-content-center mt-4">
-				<div class="col-lg-10">
-					<div class="card shadow">
-						<div class="card-body">
-							<h5 class="card-title">Game Settings</h5>
-							<div class="row g-3">
-								<div class="col-md-6">
-									<label for="theme" class="form-label">Board Theme</label>
-									<select class="form-select" id="theme">
-										<option value="classic">Classic</option>
-										<option value="modern">Modern</option>
-										<option value="neon">Neon</option>
-									</select>
-								</div>
-								<div class="col-md-6">
-									<label for="difficulty" class="form-label">Difficulty</label>
-									<select class="form-select" id="difficulty">
-										<option value="easy">Easy</option>
-										<option value="medium">Medium</option>
-										<option value="hard">Hard</option>
-									</select>
-								</div>
-								<div class="col-12">
-									<div class="form-check form-switch">
-										<input
-											class="form-check-input"
-											type="checkbox"
-											id="soundEffects" />
-										<label class="form-check-label" for="soundEffects"
-											>Enable Sound Effects</label
-										>
-									</div>
-								</div>
-							</div>
-						</div>
+		<!-- Script to display the title of the game based on the topology -->
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const topology = sessionStorage.getItem("topology");
+				const titleElementSurface = document.getElementById("title-surface");
+				if (topology) {
+					titleElementSurface.textContent = `Snake game on ${topology} surface`;
+				} else {
+					titleElementSurface.textContent = "Snake game on unknown topology";
+				}
+			});
+		</script>
+
+		<!-- Script to display the score and highest score on both components -->
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				setInterval(function () {
+					// Extract useful data
+					const currentScore = sessionStorage.getItem("currentScore") || 1;
+					let topology = sessionStorage.getItem("topology");
+					let highestScore =
+						localStorage.getItem("highestScore_" + topology) || 1;
+
+					// Display the current score on both components
+					document.getElementById("score1").textContent =
+						"Score: " + currentScore;
+					document.getElementById("score2").textContent =
+						"Score: " + currentScore;
+
+					// Display the highest score on both components
+					document.getElementById("highestScore1").textContent =
+						"Highest score on " + topology + " is : " + highestScore;
+					document.getElementById("highestScore2").textContent =
+						"Highest score on " + topology + " is : " + highestScore;
+
+					// Update the final score in the modal
+					document.getElementById("finalScore").textContent = currentScore;
+					document.getElementById("highestScore").textContent = highestScore;
+				}, 50); // have to update at least every 1000/framerate ms
+			});
+		</script>
+
+		<!-- Function to toggle components -->
+		<script>
+			document.addEventListener("keydown", function (event) {
+				if (event.code === "KeyQ") {
+					const leftComponent = document.getElementById("leftComponent");
+					if (leftComponent.style.display === "none") {
+						leftComponent.style.display = "block";
+					} else {
+						leftComponent.style.display = "none";
+					}
+				}
+			});
+		</script>
+
+		<!-- Modal to display the final score -->
+		<div
+			class="modal fade"
+			id="deathModal"
+			data-bs-backdrop="static"
+			data-bs-keyboard="false"
+			tabindex="-1"
+			aria-labelledby="deathModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content text-center bg-dark text-white">
+					<!-- Modal header -->
+					<div
+						class="modal-header text-center align-items-center justify-content-center">
+						<h5 class="modal-title" id="deathModalLabel">Game Over!</h5>
+					</div>
+					<!-- Modal body -->
+					<div class="modal-body row align-items-center">
+						<p class="my-3">Your final score: <span id="finalScore" /></p>
+						<p>Your highest score: <span id="highestScore" /></p>
+					</div>
+					<!-- Modal footer -->
+					<div class="modal-footer align-items-center justify-content-center">
+						<button
+							type="button"
+							class="btn btn-primary"
+							onclick="clearSessionAndRestart()">
+							Restart Game
+						</button>
 					</div>
 				</div>
-			</div> -->
+			</div>
 		</div>
+		<!-- Function for the button -->
+		<script>
+			function clearSessionAndRestart() {
+				sessionStorage.clear(); // Clear session storage
+				window.location.href = "setup.html"; // Redirect to the setup page
+			}
+		</script>
 
 		<script type="module" src="init.js"></script>
 		<script src="snake.js"></script>

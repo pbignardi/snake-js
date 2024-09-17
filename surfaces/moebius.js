@@ -37,9 +37,9 @@ export function draw_moebius(
 
 			sketch.beginShape(sketch.TESS);
 			// Color of the face
-			if (containsSubArray(snakePosition, [theta_num, t_num])) {
+			if (containsSubArray(snakePosition, [theta_num, t_num]) || false) {
 				sketch.fill(195, 232, 141);
-			} else if (equalArray(foodPosition, [theta_num, t_num])) {
+			} else if (equalArray(foodPosition, [theta_num, t_num]) || false) {
 				sketch.fill(240, 113, 120);
 			} else if ((theta_num + t_num) % 2 == 0) {
 				sketch.fill(colorChessboard1);
