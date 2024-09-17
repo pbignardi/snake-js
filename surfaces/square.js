@@ -20,9 +20,9 @@ export function draw_square(
 	for (let i = 0; i < cols; i++) {
 		for (let j = 0; j < rows; j++) {
 			// Color of the face
-			if (containsSubArray(snakePosition, [i, j])) {
+			if (containsSubArray(snakePosition, [i, j]) || false) {
 				sketch.fill(195, 232, 141);
-			} else if (equalArray(foodPosition, [i, j])) {
+			} else if (equalArray(foodPosition, [i, j]) || false) {
 				sketch.fill(240, 113, 120);
 			} else if ((i + j) % 2 == 0) {
 				sketch.fill(colorChessboard1);

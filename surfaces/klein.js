@@ -35,9 +35,9 @@ export function draw_klein(
 
 			sketch.beginShape(sketch.TESS);
 			// Color of the face
-			if (containsSubArray(snakePosition, [u_num, v_num])) {
+			if (containsSubArray(snakePosition, [u_num, v_num]) || false) {
 				sketch.fill(195, 232, 141);
-			} else if (equalArray(foodPosition, [u_num, v_num])) {
+			} else if (equalArray(foodPosition, [u_num, v_num]) || false) {
 				sketch.fill(240, 113, 120);
 			} else if ((u_num + v_num) % 2 == 0) {
 				sketch.fill(colorChessboard1);
