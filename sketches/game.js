@@ -17,7 +17,7 @@ export const gameSketch = (sketch) => {
 	sketch.setup = () => {
 		sketch.createCanvas(width, height);
 		s = new Snake(sketch);
-		sketch.frameRate(5);
+		sketch.frameRate(10);
 		pickLocation();
 	};
 
