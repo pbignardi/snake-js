@@ -1,4 +1,5 @@
 "use strict";
+import { containsSubArray } from "../utils.js";
 
 export const gameSketch = (sketch) => {
 	let s;
@@ -32,11 +33,22 @@ export const gameSketch = (sketch) => {
 
 	// pickLocation function for food
 	let pickLocation = () => {
-		food = sketch.createVector(
-			Math.floor(Math.random() * cols),
-			Math.floor(Math.random() * rows)
-		);
-		food.mult(scl);
+		// get the position of the snake
+		let snakePos = snakePosition();
+		// create a list of all possible positions
+		let possiblePositions = [];
+		for (let i = 0; i < cols; i++) {
+			for (let j = 0; j < rows; j++) {
+				if (!containsSubArray(snakePos, [i, j])) {
+					possiblePositions.push([i, j]);
+				}
+			}
+		}
+		// choose a random position from the list
+		let index = Math.floor(Math.random() * possiblePositions.length);
+		let position = possiblePositions[index];
+		// create a vector for the food
+		food = sketch.createVector(position[0] * scl, position[1] * scl);
 	};
 
 	// draw function
