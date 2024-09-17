@@ -13,8 +13,11 @@ export function containsSubArray(array, element) {
 
 // check if array1 is equal to array2
 export function equalArray(array1, array2) {
-	if (array1[0] === array2[0] && array1[1] === array2[1]) {
-		return true;
+	try {
+		if (array1[0] === array2[0] && array1[1] === array2[1]) {
+			return true;
+		}
+	} catch (error) {
+		return false;
 	}
-	return false;
 }
