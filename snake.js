@@ -202,10 +202,15 @@ class Snake {
 	}
 
 	show() {
-		this.sketch.fill(195, 232, 141);
+        let head_color = this.sketch.color(195, 232, 141) // to change ?
+        let last_color = this.sketch.color(49, 128, 25) // to change ?
 		for (let i = 0; i < this.tail.length; i++) {
+            let inter = this.sketch.map(i+1, 0, this.tail.length, 0, 1);
+            let color = this.sketch.lerpColor(head_color, last_color, inter);
+            this.sketch.fill(color);
 			this.sketch.rect(this.tail[i].x, this.tail[i].y, this.scl, this.scl);
 		}
+        this.sketch.fill(head_color);
 		this.sketch.rect(this.x, this.y, this.scl, this.scl);
 	}
 
