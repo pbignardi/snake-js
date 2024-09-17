@@ -37,12 +37,12 @@ export function draw_klein(
 
 			sketch.beginShape(sketch.TESS);
 			// Color of the face
-            let index = snakePosition.findIndex((e) => (e[0] == u_num && e[1] == v_num));
+            let index = snakePosition !== null ? snakePosition.findIndex((e) => (e[0] == v_num && e[1] == u_num)) : -1;
             if (index > -1) {
                 let inter = sketch.map(index, 0, snakePosition.length, 0, 1);
                 let color = sketch.lerpColor(head_color, last_color, inter);
                 sketch.fill(color);
-			} else if (equalArray(foodPosition, [u_num, v_num]) || false) {
+			} else if (equalArray(foodPosition, [v_num, u_num]) || false) {
 				sketch.fill(240, 113, 120);
 			} else if ((u_num + v_num) % 2 == 0) {
 				sketch.fill(colorChessboard1);
