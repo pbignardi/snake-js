@@ -38,7 +38,7 @@ export function draw_torus(
 
 			sketch.beginShape(sketch.TESS);
 			// Color of the face
-            let index = snakePosition.findIndex((e) => (e[0] == theta_num && e[1] == phi_num));
+            let index = snakePosition !== null ? snakePosition.findIndex((e) => (e[0] == theta_num && e[1] == phi_num)) : -1;
             if (index > -1) {
                 let inter = sketch.map(index, 0, snakePosition.length, 0, 1);
                 let color = sketch.lerpColor(head_color, last_color, inter);

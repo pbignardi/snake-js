@@ -37,7 +37,7 @@ export function draw_cylinder(
 			let h = h_num * increse_h;
 
 			sketch.beginShape(sketch.TESS);
-            let index = snakePosition.findIndex((e) => (e[0] == theta_num && e[1] == h_num));
+            let index = snakePosition !== null ? snakePosition.findIndex((e) => (e[0] == theta_num && e[1] == h_num)) : -1;
             if (index > -1) {
                 let inter = sketch.map(index, 0, snakePosition.length, 0, 1);
                 let color = sketch.lerpColor(head_color, last_color, inter);
