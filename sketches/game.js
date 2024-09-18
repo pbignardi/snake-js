@@ -70,6 +70,12 @@ export const gameSketch = (sketch) => {
 		}
 		s.death();
 		s.update();
+		if (s.win()) {
+			console.log("You win!");
+			sketch.noLoop();
+			s.showWinModal();
+			s.reset();
+		}
 		s.show();
 		drawIdentification();
 

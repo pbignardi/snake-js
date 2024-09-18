@@ -111,7 +111,7 @@ class Snake {
 		for (let i = 0; i < this.tail.length; i++) {
 			let pos = this.tail[i];
 			let d = this.sketch.dist(this.x, this.y, pos.x, pos.y);
-			if (d < 1) {
+			if (d < 1 && !this.win()) {
 				console.log("starting over");
 				this.#is_dead = true;
 				this.sketch.noLoop(); // stop the game
@@ -128,6 +128,16 @@ class Snake {
 		this.#yspeed = 0;
 		this.#total = 0;
 		this.#tail = [];
+	}
+
+	// Function to check if the snake has won
+	win() {
+		let snakeLength = this.total + 1;
+		if (snakeLength === (this.width * this.height) / (this.scl * this.scl)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	update() {
@@ -155,7 +165,7 @@ class Snake {
 
 		// update framerate (update speed of 1 every 5 points with initial speed of 10) and for a maximum of 30
 		if ((this.total + 1) % 5 === 0) {
-			this.sketch.frameRate(Math.max(10 + Math.floor(this.total / 5)));
+			this.sketch.frameRate(Math.max(10 + Math.floor((this.total + 1) / 5)));
 		}
 
 		switch (this.topology) {
@@ -226,12 +236,14 @@ class Snake {
 
 	// Call this function when the snake dies
 	showDeathModal() {
-		// Update modal with final and highest scores
-		document.getElementById("finalScore").textContent = 5;
-		document.getElementById("highestScore").textContent = 7;
-
 		// Show the modal (using Bootstrap's modal functionality)
 		let deathModal = new bootstrap.Modal(document.getElementById("deathModal"));
 		deathModal.show();
+	}
+
+	// Call this function when the snake wins
+	showWinModal() {
+		let winModal = new bootstrap.Modal(document.getElementById("winModal"));
+		winModal.show();
 	}
 }

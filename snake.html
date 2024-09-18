@@ -114,8 +114,11 @@
 						"Highest score on " + topology + " is : " + highestScore;
 
 					// Update the final score in the modal
-					document.getElementById("finalScore").textContent = currentScore;
-					document.getElementById("highestScore").textContent = highestScore;
+					document.getElementById("finalScoreDeath").textContent = currentScore;
+					document.getElementById("highestScoreDeath").textContent =
+						highestScore;
+					document.getElementById("finalScoreWin").textContent = currentScore;
+					document.getElementById("highestScoreWin").textContent = highestScore;
 				}, 50); // have to update at least every 1000/framerate ms
 			});
 		</script>
@@ -134,7 +137,7 @@
 			});
 		</script>
 
-		<!-- Modal to display the final score -->
+		<!-- Death Modal -->
 		<div
 			class="modal fade"
 			id="deathModal"
@@ -148,12 +151,49 @@
 					<!-- Modal header -->
 					<div
 						class="modal-header text-center align-items-center justify-content-center">
-						<h5 class="modal-title" id="deathModalLabel">Game Over!</h5>
+						<h5 class="modal-title" id="deathModalLabel" style="color: #ff5370">
+							Game Over!
+						</h5>
 					</div>
 					<!-- Modal body -->
 					<div class="modal-body row align-items-center">
-						<p class="my-3">Your final score: <span id="finalScore" /></p>
-						<p>Your highest score: <span id="highestScore" /></p>
+						<p class="my-3">Your final score: <span id="finalScoreDeath" /></p>
+						<p>Your highest score: <span id="highestScoreDeath" /></p>
+					</div>
+					<!-- Modal footer -->
+					<div class="modal-footer align-items-center justify-content-center">
+						<button
+							type="button"
+							class="btn btn-primary"
+							onclick="clearSessionAndRestart()">
+							Restart Game
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Win Modal -->
+		<div
+			class="modal fade"
+			id="winModal"
+			data-bs-backdrop="static"
+			data-bs-keyboard="false"
+			tabindex="-1"
+			aria-labelledby="winModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content text-center bg-dark text-white">
+					<!-- Modal header -->
+					<div
+						class="modal-header text-center align-items-center justify-content-center">
+						<h5 class="modal-title" id="winModalLabel" style="color: #c3e88d">
+							You win!
+						</h5>
+					</div>
+					<!-- Modal body -->
+					<div class="modal-body row align-items-center">
+						<p class="my-3">Your final score: <span id="finalScoreWin" /></p>
+						<p>Your highest score: <span id="highestScoreWin" /></p>
 					</div>
 					<!-- Modal footer -->
 					<div class="modal-footer align-items-center justify-content-center">
