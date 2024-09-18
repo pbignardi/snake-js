@@ -165,7 +165,6 @@ class Snake {
 
 		// update framerate (update speed of 1 every 5 points with initial speed of 10) and for a maximum of 30
 		if ((this.total + 1) % 5 === 0) {
-			console.log(Math.max(10 + Math.floor((this.total + 1) / 5)));
 			this.sketch.frameRate(Math.max(10 + Math.floor((this.total + 1) / 5)));
 		}
 
