@@ -1,6 +1,6 @@
 /* Body customization */
 body {
-	font-family: "JetBrainsMono Nerd Font";
+	font-family: "JetBrainsMono Nerd Font", $font-family-base,;
 }
 
 /* Card customization */
