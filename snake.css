@@ -53,4 +53,6 @@ body {
     width: 50%;
     min-width: 600px;
     height: 50%;
+    display: flex;
+    justify-content: center;
 }
