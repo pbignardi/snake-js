@@ -1,6 +1,16 @@
+/* HTML customization */
+html {
+    margin: 0;
+    height: 100%;
+    overflow: hidden
+}
+
 /* Body customization */
 body {
 	font-family: "JetBrainsMono Nerd Font", $font-family-base,;
+    margin: 0;
+    height: 100%;
+    overflow: hidden
 }
 
 /* Card customization */
@@ -37,4 +47,12 @@ body {
 
 .modal-body p {
 	font-size: 20px;
+}
+
+#leftComponent, #rightComponent {
+    width: 50%;
+    min-width: 600px;
+    height: 50%;
+    display: flex;
+    justify-content: center;
 }
