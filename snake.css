@@ -48,11 +48,3 @@ body {
 .modal-body p {
 	font-size: 20px;
 }
-
-#leftComponent, #rightComponent {
-    width: 50%;
-    min-width: 600px;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-}
