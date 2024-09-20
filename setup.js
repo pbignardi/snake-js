@@ -10,8 +10,8 @@ document
 		event.preventDefault();
 
 		// Get the values from the form
-		const width = 600;
-		const height = 600;
+		const width = document.getElementById("width").value;
+		const height = document.getElementById("height").value;
 		const scale = document.getElementById("scale").value;
 		sessionStorage.setItem("width", width);
 		sessionStorage.setItem("height", height);
